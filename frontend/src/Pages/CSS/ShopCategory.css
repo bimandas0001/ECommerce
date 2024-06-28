@@ -1,0 +1,11 @@
+.shop-category {
+    padding: 20px var(--pad-1);
+    background-color: rgb(214, 214, 201); 
+}
+
+.display-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--item-width), 1fr));
+    gap: var(--gap-between-items);
+    grid-auto-rows: var(--item-height);
+}

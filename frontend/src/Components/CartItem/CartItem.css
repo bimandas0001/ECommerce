@@ -1,0 +1,31 @@
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px auto;
+}
+
+.cart-item-img {
+    img {
+        width: 200px;
+        margin-right: 10px;
+    }
+}
+
+.cart-item-count-change {
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+
+    button {
+        margin-inline: 6px;
+
+        img {
+            width: 20px;
+        }
+    }
+    button:hover {
+        cursor: pointer;
+        transform: scale(1.16);
+        transition: ease-out 0.1s;
+    }
+}

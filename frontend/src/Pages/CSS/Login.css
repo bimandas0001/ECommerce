@@ -1,0 +1,139 @@
+.main-section {
+  margin: 0 auto;
+  width: 450px;
+  margin-top: 100px;
+}
+
+/* Alert message */
+.alert {
+  width: 300px;
+  padding: 10px 25px;
+  background-color: yellow;
+  border: solid 1px #002fff;
+  box-shadow: 4px 4px 6px #002fff;
+  margin: 30px 0;
+  border-radius: 6px;
+  border: solid 1px #000000;
+  box-shadow: 4px 4px 6px rgb(255, 51, 0);
+  position: absolute;
+  transform: translate(-50%, 0%);
+  left: 50%;
+  top: -10px;
+}
+
+.alert-message {
+  font-size: 18px;
+  font-weight: 800;
+  color: black;
+}
+
+/* Alert message (by JS) hide by default */
+#alert-by-js {
+  display: none;
+}
+
+.title {
+  margin: 4px auto 22px;
+  background-color: #2326d3;
+  width: 300px;
+  text-align: center;
+  padding: 14px 0;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px #1c3374;
+
+  p {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+  }
+}
+
+.data-input {
+  margin: 20px auto;
+  width: 100%;
+  padding: 28px;
+  border-radius: 6px;
+  box-shadow: 10px 10px 5px #000000;
+  background-color: #7c98e4;
+
+  label {
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 18px;
+  }
+
+  .instruction {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(26, 110, 1);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin: 6px 0 10px;
+  }
+
+  .instruction-highlighted {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(0, 18, 176);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin: 6px 0 10px;
+  }
+
+  .invalid-input-warning {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(197, 27, 27);
+    text-shadow: 0.5px 0.5px #9a0000;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin: -10px 0 10px;
+  }
+
+  input, .submit-btn {
+    margin: 2px 0 16px;
+    width: 100%;
+    height: 36px;
+    border: solid 1px #304680;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 0 3px;
+  }
+
+  .submit-btn {
+    width: 42%;
+    margin-top: 20px;
+    color: red;
+  }
+
+  .submit-btn:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+    transition: ease-out 0.1s;
+  }
+}
+
+.other-options {
+  margin: 20px 0;
+  padding: 8px 0 8px 25px;
+  background-color: #4fbfd3;
+  border-radius: 6px;
+  border: solid 1px black;
+
+  span {
+    font-size: 18px;
+    margin: 0 20px 0 0;
+  }
+
+  button {
+    color: rgb(29, 56, 206);
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #0000;
+    border: none;
+  }
+  :hover {
+    transform: scale(1.05);
+    transition: ease-out 0.02s;
+  }
+}

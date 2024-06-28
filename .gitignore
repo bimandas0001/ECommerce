@@ -1,0 +1,7 @@
+frontend/node_muodules
+frontend/build
+frontend/dist
+
+backend/node_modules
+backend/rough
+backend/.env

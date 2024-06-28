@@ -1,0 +1,26 @@
+.item {
+    height: 100%;
+    background-color: #3a8bb3;
+    position: relative;
+}
+
+.item:hover {
+    transform: scale(1.04);
+    translate: ease out 0.4s;
+}
+
+.photo {
+    width: 100%;
+    max-height: calc(var(--item-height) * 0.75);
+    object-fit: fill;
+}
+
+.name {
+    margin: 4px 4px 0;
+}
+
+.price {
+    margin: 0 4px 4px;
+    position: absolute;
+    bottom: 0;
+}
