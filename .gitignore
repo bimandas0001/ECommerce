@@ -1,7 +1,9 @@
 frontend/node_muodules
 frontend/build
 frontend/dist
+frontend/src/Components/Assets
 
 backend/node_modules
 backend/rough
+backend/upload
 backend/.env
