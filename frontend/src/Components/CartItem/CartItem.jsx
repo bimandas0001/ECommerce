@@ -11,6 +11,7 @@ export const CartItem = (props) => {
   const {all_product, updateCartItems} = useContext(ShopContext);
 
   return (
+    (all_product[productId] === undefined || all_product[productId].new_price === undefined) ? <></> :
     <div className='cart-item'>
         <div className="cart-item-row">
             <div className="cart-item-img">

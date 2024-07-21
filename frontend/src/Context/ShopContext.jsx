@@ -1,32 +1,36 @@
-import all_product from './../Components/Assets/all_product';
+// import all_product from './../Components/Assets/all_product';
 import React, {createContext, useState, useEffect} from 'react';
 export const ShopContext = createContext(null);
 
 // Cart items
 export const ShopContextProvider = (props) => {
-  // const [all_product, setAllProduct] = useState([]);
+  const [all_product, setAllProduct] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
 
   // Fetch All products.
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/allproducts")
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     // Set the image path.
-  //     data.forEach(item => {
-  //       item.image = "http://localhost:4000/images/" + item.image;
-  //     })
-  //     setAllProduct(data)
-  //   })
-  //   .catch((err)=> {alert(`${err} \nReload the page`)})
-  // }, [])
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BE_URL}/allproducts`)
+    .then(response => response.json())
+    .then(data => {
+      // Set the image path.
+      data.forEach(item => {
+        item.image = `${import.meta.env.VITE_BE_URL}/images/` + item.image;
+      })
+      setAllProduct(data)
+    })
+    .catch((err)=> {alert(`${err} \nReload the page.`)})
+  }, [])
+
+  // useEffect(()=> {
+  //   console.log(all_product)
+  // }, all_product)
 
   // Fetch Cart items (of logged in user).
   useEffect( async () => {
     if(localStorage.getItem("auth-token") !== null) {
-      await fetch("http://localhost:4000/getcartitems", {
+      await fetch(`${import.meta.env.VITE_BE_URL}/getcartitems`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -50,15 +54,17 @@ export const ShopContextProvider = (props) => {
   useEffect(()=> {
     let totalItems = 0, amount = 0;
     Object.entries(cartItems).forEach(([itemId, count]) => {
-      totalItems += count ?? 0;
-      amount += all_product[itemId].new_price * (count !== undefined ? count : 0);
+      if(all_product[itemId] !== undefined && all_product[itemId].new_price !== undefined) {
+        totalItems += count ?? 0;
+        amount += all_product[itemId].new_price * (count !== undefined ? count : 0);
+      }
     })
     setTotalItemsInCart(Math.max(0, totalItems))
     setTotalAmount(Math.max(0, amount))
   }, [cartItems])
   
   async function updateCartItems(itemId, change) { // countChange = +1/-1
-    fetch("http://localhost:4000/updatecart", {
+    fetch(`${import.meta.env.VITE_BE_URL}/updatecart`, {
       method: "POST",
       headers: {
         Accept: "application/json",

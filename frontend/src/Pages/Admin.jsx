@@ -19,7 +19,7 @@ export const Admin = () => {
       fd.append(name, val)
     })
 
-    await fetch("http://localhost:4000/addproduct", {
+    await fetch(`${import.meta.env.VITE_BE_URL}/addproduct`, {
       method: "POST",
       headers: {
         "auth-token": localStorage.getItem('auth-token')

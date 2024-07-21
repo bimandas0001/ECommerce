@@ -19,7 +19,7 @@ export const Login = () => {
   async function handleLoginSubmit(e) {
     e.preventDefault()
     // console.log(logInForm);  
-    await fetch(`${'apiUrl'}/login`, {
+    await fetch(`${import.meta.env.VITE_BE_URL}/login`, {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -75,7 +75,7 @@ export const Login = () => {
     try {
       await validationSchema.validate(signupForm, {abortEarly: false});
       // All form data is vaild. Send user data to server.
-      await fetch("http://localhost:4000/email-veryfication", {
+      await fetch(`${import.meta.env.VITE_BE_URL}/email-veryfication`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -112,7 +112,7 @@ export const Login = () => {
   async function handleOtpSubmit(e){
     e.preventDefault()
     if((/^\d{6}$/).test(signupForm.otp)) {
-      await fetch("http://localhost:4000/signup", {
+      await fetch(`${import.meta.env.VITE_BE_URL}/signup`, {
         method: 'POST',
         headers: {
           Accept: "application/json",
