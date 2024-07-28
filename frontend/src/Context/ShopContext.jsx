@@ -13,13 +13,7 @@ export const ShopContextProvider = (props) => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BE_URL}/allproducts`)
     .then(response => response.json())
-    .then(data => {
-      // Set the image path.
-      data.forEach(item => {
-        item.image = `${import.meta.env.VITE_BE_URL}/images/` + item.image;
-      })
-      setAllProduct(data)
-    })
+    .then(data => setAllProduct(data))
     .catch((err)=> {alert(`${err} \nReload the page.`)})
   }, [])
 

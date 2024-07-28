@@ -2,12 +2,14 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 
 // Import modules
 import {connectToDatabase, disconnectFromDatabase} from './database.js';
 import {Product, Session, User} from './schema.js';
 import { upload, fetchUser, isAdmin, emailVeryfication } from './middleware.js';
 import { sendMail, randomGenerator } from './helper.js';
+import { uploadPhoto } from './firebase/uploadPhoto.js';
 
 dotenv.config();
 
@@ -38,15 +40,26 @@ app.listen(port, (error) => {
 // Operations on products.
 app.post('/addproduct', fetchUser, isAdmin, upload.single('product-image'), async (req, res) => {
     try {
+        const file = req.file;
+        if (!file) {
+            return res.status(400).send('No file uploaded.');
+        }
+
+        // Fetch next available product id.
         let id;
         let products = await Product.find({}).sort({id: 1});
         if(products.length > 0)    id = products.slice(-1)[0].id + 1;
         else    id = 1;
 
+        // Store product image to cloud storage.
+        const destination = `Products/P_${id}_${req.body.category}${path.extname(file.originalname)}`;
+        const publicUrl = await uploadPhoto(file.buffer, destination, file.mimetype);
+        // console.log(publicUrl);
+
         const product = new Product({
             id: id,
             name: req.body.name,
-            image: req.file.filename,
+            image: publicUrl,
             category: req.body.category,
             new_price: req.body.new_price,
             old_price: req.body.old_price,

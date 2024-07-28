@@ -8,17 +8,19 @@ import {Session, User} from './schema.js';
 dotenv.config();
 const jwtKey = process.env.JWT_KEY;
 
-// Image storage engine
-const storage = multer.diskStorage({
-    destination: './upload/images',
-    filename: (req, file, cb) => {
-        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-    }
-})
+// Configure multer to store file in local storage.
+// const storage = multer.diskStorage({
+//     destination: './upload/images',
+//     filename: (req, file, cb) => {
+//         return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+//     }
+// })
 
+// Configure multer to store file in memory.
+const storage = multer.memoryStorage();
 export const upload = multer({storage: storage})
 
-// Middelware to fetch user data.
+// Middleware to fetch user data.
 export function fetchUser(req, res, next) {
     let token = req.header('auth-token');
     try {

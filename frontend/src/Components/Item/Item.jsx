@@ -10,8 +10,12 @@ export const Item = (props) => {
         <img src={props.image} alt={props.image} className='photo'/>
         <p className='name'> {props.name} </p>
         <div className="price">
-          <p> Old price : <span> {props.old_price} </span> </p>
-          <p> New price : <span> {props.new_price} </span></p>
+          <p className='new-price-line'> 
+            Price : <span className='new-price'> {props.new_price} </span> 
+            <span className='discount'> 
+              { Math.floor((props.old_price - props.new_price) / props.old_price * 100)}% off 
+            </span></p>
+          <p className='old-price-line'> Old price : <span> {props.old_price} </span> </p>
         </div>
       </Link>
     </div>
