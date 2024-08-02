@@ -2,8 +2,9 @@ import React, {useState, useEffect, useContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Navbar.css';
-import logo from '../Assets/logo.png';
-import cart_icon from '../Assets/cart_icon.png';
+import logo from '/public/logo.png';
+import cart_icon from '/public/cart_icon.png';
+
 import { ShopContext } from '../../Context/ShopContext';
 
 export const Navbar = () => {

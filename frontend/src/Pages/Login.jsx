@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
+import { toast } from 'react-toastify';
 import { ShopContext } from '../Context/ShopContext';
 import * as yup from 'yup';
 
@@ -39,10 +40,10 @@ export const Login = () => {
         }
       }
       else {
-        alert(response.error)
+        toast.error(response.error)
       }
     })
-    .catch(()=> {alert("Something is wrong. Please try again.")})
+    .catch(()=> {toast.error("Something is wrong. Please try again.")})
   }
 
   // Sign Up
@@ -89,10 +90,10 @@ export const Login = () => {
           setProcess("Submit OTP")
         }
         else {
-          alert(data.error)
+          toast.error(data.error)
         }
       })
-      .catch(()=> {alert("Something is wrong. Please try again.")})
+      .catch(()=> {toast.error("Something is wrong. Please try again.")})
     }
     catch(error) {
       // If signupForm has error.
@@ -125,16 +126,16 @@ export const Login = () => {
         if(response.success === true) {
           localStorage.setItem("auth-token", response.token)
           window.location.assign('/')
-          alert("You have been registered.")
+          toast.success("You have been registered.")
         }
         else {
-          alert(response.error)
+          toast.error(response.error)
           setProcess("Sign Up")
         }
       })
       .catch(()=> {
         setProcess("Sign Up")
-        alert("Something is wrong. Please try again.")
+        toast.error("Something is wrong. Please try again.")
       })
     }
     else {

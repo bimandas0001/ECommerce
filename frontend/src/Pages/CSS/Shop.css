@@ -3,6 +3,19 @@
   background-color: rgb(214, 214, 201);
 }
 
+.message {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.issue-message {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(67, 67, 67);
+}
+
 .latest-section {
   background-color: #4B3ADE;
   padding: 0 calc(2*var(--pad-1)) calc(2*var(--pad-1));

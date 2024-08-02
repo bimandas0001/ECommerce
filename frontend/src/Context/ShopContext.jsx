@@ -1,5 +1,7 @@
 // import all_product from './../Components/Assets/all_product';
 import React, {createContext, useState, useEffect} from 'react';
+import { toast } from 'react-toastify';
+
 export const ShopContext = createContext(null);
 
 // Cart items
@@ -14,7 +16,7 @@ export const ShopContextProvider = (props) => {
     fetch(`${import.meta.env.VITE_BE_URL}/allproducts`)
     .then(response => response.json())
     .then(data => setAllProduct(data))
-    .catch((err)=> {alert(`${err} \nReload the page.`)})
+    .catch((err)=> {toast.error(`Failed to fetch products data. \nPlease Reload the page.`)})
   }, [])
 
   // useEffect(()=> {
@@ -38,10 +40,10 @@ export const ShopContextProvider = (props) => {
           setCartItems(data.cartItems) 
         }
         else {
-          alert(data.error)
+          toast.error(data.error)
         }
       })
-      .catch(err => alert(`${err} \nReload the page.`))
+      .catch(err => toast.error(`Failed to fetch your cart details. \nPlease Reload the page.`))
     }
   }, [])
 
@@ -72,13 +74,13 @@ export const ShopContextProvider = (props) => {
       if(data.success === true) {
         setCartItems(data.updatedCart)
       }
-      else   alert(data.error)
+      else   toast.error(data.error)
     })
-    .catch(err => alert("Unable to update cart items. Please try again."))
+    .catch(err => toast.error("Unable to update cart items. Please try again."))
   }
   
   const contextValue = {all_product, cartItems, updateCartItems, totalItemsInCart, totalAmount};
-  
+
   return (
     <ShopContext.Provider value={contextValue}>
         {props.children}

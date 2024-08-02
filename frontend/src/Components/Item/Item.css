@@ -2,6 +2,7 @@
     height: 100%;
     background-color: #3a8bb3;
     position: relative;
+    overflow: hidden;
 }
 
 .item:hover {
@@ -14,6 +15,13 @@
     height: 75%;
     max-height: calc(var(--item-height) * 0.75);
     object-fit: fill;
+}
+
+.details {
+    width: 100%;
+    height: 25%;
+    position: absolute;
+    bottom: 0px;
 }
 
 .name {

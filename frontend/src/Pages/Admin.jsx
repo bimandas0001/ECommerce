@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { ShopContext } from '../Context/ShopContext.jsx';
+import { toast } from 'react-toastify';
 import './CSS/Admin.css';
 
 export const Admin = () => {
@@ -28,10 +29,10 @@ export const Admin = () => {
     })
     .then(response => response.json())
     .then(data => {
-      if(data.success)    alert("Product added")
-      else    alert(data.error)
+      if(data.success)    toast.success("Product added")
+      else    toast.error(data.error)
     })
-    .catch(() => alert("Error from server. Try again"))
+    .catch(() => toast.error("Error from server. Try again"))
   }
 
   return (

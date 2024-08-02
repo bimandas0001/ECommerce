@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
 import {Item} from '../Components/Item/Item';
@@ -8,6 +8,14 @@ import './CSS/Shop.css';
 
 export const Shop = () => {
   const {all_product} = useContext(ShopContext);
+
+  // All products loading status
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    if(all_product && all_product.length > 0) {
+      setIsLoading(false);
+    }
+  }, [all_product])
 
   const categories = ['men', 'women', 'kids']
   // Filter the latest items.
@@ -21,6 +29,11 @@ export const Shop = () => {
 
   return (
     <div className="shop-main">
+      {
+        isLoading ? 
+          <p className='message'>Loading products... <span className='issue-message'><br/>Free hosting server may take about 50 seconds to load after a period of inactivity. Please wait.</span></p> 
+          : <> </>
+      }
       {
         categories.map(category => {
           return (

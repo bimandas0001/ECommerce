@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 
 import './CartItem.css';
 import { ShopContext } from '../../Context/ShopContext';
-import plus_icon from './../Assets/plus_icon.png';
-import minus_icon from './../Assets/minus_icon.png';
+import plus_icon from '/public/plus_icon.png';
+import minus_icon from '/public/minus_icon.png';
 
 
 export const CartItem = (props) => {
