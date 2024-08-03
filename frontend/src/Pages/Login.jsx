@@ -33,6 +33,7 @@ export const Login = () => {
       if(response.success == true) {
         localStorage.setItem("auth-token", response.token)
         if(response.isAdmin) {
+          localStorage.setItem("isAdmin", true)
           window.location.assign('/admin')
         }
         else {

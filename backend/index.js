@@ -9,7 +9,7 @@ import {connectToDatabase, disconnectFromDatabase} from './database.js';
 import {Product, Session, User} from './schema.js';
 import { upload, fetchUser, isAdmin, emailVeryfication } from './middleware.js';
 import { sendMail, randomGenerator } from './helper.js';
-import { uploadPhoto } from './firebase/uploadPhoto.js';
+import { uploadPhoto, deletePhoto } from './firebase/firebaseOperations.js';
 
 dotenv.config();
 
@@ -54,7 +54,6 @@ app.post('/addproduct', fetchUser, isAdmin, upload.single('product-image'), asyn
         // Store product image to cloud storage.
         const destination = `Products/P_${id}_${req.body.category}${path.extname(file.originalname)}`;
         const publicUrl = await uploadPhoto(file.buffer, destination, file.mimetype);
-        // console.log(publicUrl);
 
         const product = new Product({
             id: id,
@@ -81,16 +80,17 @@ app.post('/addproduct', fetchUser, isAdmin, upload.single('product-image'), asyn
 
 app.post('/removeproduct', fetchUser, isAdmin, async (req, res) => {
     try {
-        let result = await Product.deleteOne({id: req.body.id})
-        if(result.deletedCount === 0) {
-            res.json({success: false, error: "Something is wrong in database. Try again."})
+        let deletedProduct  = await Product.findOneAndDelete({id: req.body.id})        
+        if(!deletedProduct ) {
+            return res.json({success: false, error: "Something is wrong in database. Try again."})
         }
-        else {
-            res.json({success: true})
-        }
+
+        await deletePhoto(deletedProduct.image)
+        res.json({success: true})
     }
     catch(err) {
         res.json({success: false, error: "Something is wrong in database. Try again."})
+        console.log(err)
     }
 })
 
