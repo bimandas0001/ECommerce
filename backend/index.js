@@ -52,7 +52,7 @@ app.post('/addproduct', fetchUser, isAdmin, upload.single('product-image'), asyn
         else    id = 1;
 
         // Store product image to cloud storage.
-        const destination = `Products/P_${id}_${req.body.category}${path.extname(file.originalname)}`;
+        const destination = `Products/P_${id}${path.extname(file.originalname)}`;
         const publicUrl = await uploadPhoto(file.buffer, destination, file.mimetype);
 
         const product = new Product({

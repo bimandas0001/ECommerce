@@ -55,6 +55,7 @@ export const ShopContextProvider = (props) => {
         amount += all_product[itemId].new_price * (count !== undefined ? count : 0);
       }
     })
+
     setTotalItemsInCart(Math.max(0, totalItems))
     setTotalAmount(Math.max(0, amount))
   }, [cartItems])

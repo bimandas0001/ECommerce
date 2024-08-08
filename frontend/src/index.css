@@ -3,6 +3,7 @@
   --gap-between-items: 30px;
   --item-width: 250px;
   --item-height: 410px;
+  --mobile-screen-width: 740px;
 }
 
 * {

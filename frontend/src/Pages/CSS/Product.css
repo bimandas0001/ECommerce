@@ -3,8 +3,18 @@
 }
 
 .product-show {
+    width: 740px;
+    margin: 0 auto;
     display: flex;
     gap: 20px;
+}
+
+.left {
+    width: 50%;
+
+    img {
+        width: 100%;
+    }
 }
 
 .right {
@@ -12,6 +22,21 @@
 
     p {
         margin: 10px 0;
+    }
+}
+
+@media (max-width: 740px) {
+    .product-show {
+        width: 100%;
+        display: block;
+    }
+
+    .left {
+        width: 100%;
+    }
+
+    .right {
+        padding: 20px 0;
     }
 }
 

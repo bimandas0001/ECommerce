@@ -3,11 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-//
-// For connecting to shell :
-// mongosh "mongodb+srv://cluster0.x8q9o6p.mongodb.net/" --apiVersion 1 --username user1
-//
-
 // Connect with Mongodb atlas.
 async function connectToDatabase() {
     try {

@@ -51,4 +51,33 @@
   grid-template-columns: repeat(auto-fill, minmax(var(--item-width), 1fr));
   gap: calc(2*var(--gap-between-items));
   grid-auto-rows: var(--item-height);
+  grid-auto-columns: var(--item-width);
+}
+
+@media (max-width: 740px) {
+  .latest-display-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--gap-between-items));
+    grid-auto-rows: var(--item-height);
+    grid-auto-columns: var(--item-width);
+  }
+}
+
+@media (max-width: 600px) {
+  .shop-main {
+    padding: var(--pad-1) 0;
+  }
+
+  .latest-section {
+    padding: 0 var(--pad-1) var(--pad-1);
+    margin-bottom: var(--pad-1);
+    border-radius: 10px;
+  }
+
+  .latest-display-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--gap-between-items));
+    grid-auto-rows: calc(var(--item-height)*(0.85));
+  }
 }

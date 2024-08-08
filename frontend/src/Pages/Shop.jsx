@@ -20,7 +20,7 @@ export const Shop = () => {
   const categories = ['men', 'women', 'kids']
   // Filter the latest items.
   const latestProducts = {men: [], women: [], kids: []}
-  const count = {men: 8, women: 8, kids: 8}
+  const count = {men: 4, women: 4, kids: 4}
   all_product.slice().reverse().forEach(item => {
     if(count[item.category]-- > 0) {
       latestProducts[item.category].push(item)

@@ -7,13 +7,32 @@
 }
 
 .nav-left {
+	display: flex;
+	align-items: center;
+
+	.menu-btn {
+		display: none;
+		background-color: #ffffff00;
+		border: none;
+		margin-right: 1rem;
+		
+		img {
+			width: 2rem;
+		}
+	}
+	@media (max-width: 600px) {
+		.menu-btn {
+			display: inline-block;
+		}
+	}
+
 	a {
 		img {
 			width: 55px;
 		}
 		:hover {
-		transform: scale(1.05);
-		translate: ease out 0.3s;
+			transform: scale(1.05);
+			translate: ease out 0.3s;
 		}
 	}
 }
@@ -52,6 +71,12 @@
 	}
 }
 
+@media (max-width: 600px){
+	.nav-mid {
+		display: none;
+	}
+}
+
 .nav-right {
 	display: flex;
 	align-items: center;
@@ -70,21 +95,22 @@
 	}
 	
 	.cart {
-		margin-left: 16px;
+		padding: 0;
+		margin-left: 15px;
 		position: relative;
 
 		img {
 			width: 45px;
 		}
-    :hover {
-      transform: scale(1.08);
-      translate: ease out 0.3s;
-    }
+		img:hover {
+		transform: scale(1.08);
+		translate: ease out 0.3s;
+		}
 
 		span {
 			position: absolute;
-			right: 16px;
-			top: 2px;
+			right: -10px;
+			top: -6px;
 			background-color: #fff;
 			font-size: 18px;
 			font-weight: 500;
@@ -99,5 +125,63 @@
 	.cart:hover {
 		background-color: #fff;
 		border-radius: 50%;
+	}
+}
+
+/* Side menu for mobile screen */
+.side-menu-box {
+	background-color: rgba(88, 245, 229, 0.927);
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 60%;
+	z-index: 10;
+	padding: 0.8rem 0;
+
+	.menu-items {
+		font-size: 1.6rem;
+		margin: 1rem 0 0;
+	}
+
+	li {
+		padding: 0.2rem 0;
+		text-indent: 2rem;
+		margin: 0 0 1rem;
+	}
+}
+
+.show-sidemenu {
+	transition: ease-out 0.3s;
+}
+
+.remove-sidemenu {
+	transform: translateX(-100%);
+	transition: ease-out 0.3s;
+}
+
+.sidemenu-logo {
+	margin: 0 2rem 2rem;
+}
+
+.sidemenu-cross {
+	background-color: #0000;
+	border: none;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+
+	img {
+		width: 1.6rem;
+	}
+}
+
+.selected-menu {
+	background-color: yellow;
+}
+
+@media (min-width: 601px) {
+	.side-menu-box {
+		display: none;
 	}
 }
