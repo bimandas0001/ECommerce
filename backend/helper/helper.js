@@ -4,9 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export async function sendMail(receiverEmail, otp) {
-    // console.log("OTP -> " + otp);
-    // return true;
-
     const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
@@ -66,7 +63,6 @@ export async function sendMail(receiverEmail, otp) {
             </body>
             </html>
         `
-
     };
 
     try {

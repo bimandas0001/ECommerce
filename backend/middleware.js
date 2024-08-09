@@ -3,7 +3,7 @@ import path from 'path';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-import {Session, User} from './schema.js';
+import {Session, User} from './model/schema.js';
 
 dotenv.config();
 const jwtKey = process.env.JWT_KEY;

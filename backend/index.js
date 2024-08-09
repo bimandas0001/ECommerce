@@ -5,10 +5,10 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 // Import modules
-import {connectToDatabase, disconnectFromDatabase} from './database.js';
-import {Product, Session, User} from './schema.js';
+import {connectToDatabase, disconnectFromDatabase} from './model/database.js';
+import {Product, Session, User} from './model/schema.js';
 import { upload, fetchUser, isAdmin, emailVeryfication } from './middleware.js';
-import { sendMail, randomGenerator } from './helper.js';
+import { sendMail, randomGenerator } from './helper/helper.js';
 import { uploadPhoto, deletePhoto } from './firebase/firebaseOperations.js';
 
 dotenv.config();

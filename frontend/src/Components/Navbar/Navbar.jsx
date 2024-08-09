@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Navbar.css';
+import three_line from '/public/three_line.png';
 import logo from '/public/logo.png';
 import cross from '/public/cross_icon.png';
 import cart_icon from '/public/cart_icon.png';
@@ -28,7 +29,7 @@ export const Navbar = () => {
         {/* Nav Left */}
         <div className="nav-left">
           <button className='menu-btn' onClick={()=>setShowSideMenu(true)}>
-            <img src="/public/three_line.png"/>
+            <img src={three_line} />
           </button>
 
           <Link to='/' onClick={()=>setMenu('shop')}>
