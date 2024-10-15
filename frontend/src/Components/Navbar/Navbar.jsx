@@ -9,7 +9,7 @@ import cart_icon from '/public/cart_icon.png';
 
 import { ShopContext } from '../../Context/ShopContext';
 
-export const Navbar = () => {
+const Navbar = () => {
   const {totalItemsInCart} = useContext(ShopContext);
   const [menu, setMenu] = useState('shop');
   const [showSideMenu, setShowSideMenu] = useState(false);
@@ -108,3 +108,5 @@ export const Navbar = () => {
     </div>
   )
 }
+
+export default Navbar;

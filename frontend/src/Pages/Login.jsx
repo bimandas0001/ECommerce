@@ -5,7 +5,7 @@ import * as yup from 'yup';
 
 import './CSS/Login.css';
 
-export const Login = () => {
+const Login = () => {
   const [process, setProcess] = useState('Log In')
   const [logInForm, setLoginForm] = useState({email: "", password: ""})
   const [signupForm, setSignupForm] = useState({name: "", email: "", password: "", reenterPassword: "", otp: ""})
@@ -19,7 +19,6 @@ export const Login = () => {
 
   async function handleLoginSubmit(e) {
     e.preventDefault()
-    // console.log(logInForm);  
     await fetch(`${import.meta.env.VITE_BE_URL}/login`, {
       method: "POST",
       headers: {
@@ -223,3 +222,5 @@ export const Login = () => {
     </div>
   )
 }
+
+export default Login;

@@ -9,7 +9,7 @@ import {connectToDatabase, disconnectFromDatabase} from './model/database.js';
 import {Product, Session, User} from './model/schema.js';
 import { upload, fetchUser, isAdmin, emailVeryfication } from './middleware.js';
 import { sendMail, randomGenerator } from './helper/helper.js';
-import { uploadPhoto, deletePhoto } from './firebase/firebaseOperations.js';
+import { uploadPhoto, deletePhoto } from './helper/firebase/firebaseOperations.js';
 
 dotenv.config();
 
@@ -80,7 +80,7 @@ app.post('/addproduct', fetchUser, isAdmin, upload.single('product-image'), asyn
 
 app.post('/removeproduct', fetchUser, isAdmin, async (req, res) => {
     try {
-        let deletedProduct  = await Product.findOneAndDelete({id: req.body.id})        
+        let deletedProduct = await Product.findOneAndDelete({id: req.body.id})        
         if(!deletedProduct ) {
             return res.json({success: false, error: "Something is wrong in database. Try again."})
         }

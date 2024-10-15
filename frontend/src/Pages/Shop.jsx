@@ -6,7 +6,7 @@ import { ShopContext } from '../Context/ShopContext';
 
 import './CSS/Shop.css';
 
-export const Shop = () => {
+const Shop = () => {
   const {all_product} = useContext(ShopContext);
 
   // All products loading status
@@ -62,3 +62,5 @@ export const Shop = () => {
     </div>
   )
 }
+
+export default Shop;

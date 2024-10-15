@@ -3,7 +3,7 @@ import { ShopContext } from '../Context/ShopContext.jsx';
 import { toast } from 'react-toastify';
 import './CSS/Admin.css';
 
-export const Admin = () => {
+const Admin = () => {
   const {all_product} = useContext(ShopContext);
   const [formData, setFormData] = useState({})
 
@@ -75,3 +75,5 @@ export const Admin = () => {
     </div>
   )
 }
+
+export default Admin;

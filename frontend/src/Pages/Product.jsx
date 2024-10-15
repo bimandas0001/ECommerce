@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import './CSS/Product.css';
 import { ShopContext } from '../Context/ShopContext';
 
-export const Product = () => {
+const Product = () => {
   const {all_product, cartItems, updateCartItems, totalItemsInCart} = useContext(ShopContext);
   const {productId} = useParams();
   
@@ -68,3 +68,5 @@ export const Product = () => {
     </div>
   )
 }
+
+export default Product;
