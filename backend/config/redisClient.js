@@ -4,7 +4,7 @@ let client = null;
 
 async function connectToRedis() {    
     try {
-        client = redis.createClient({host: process.env.REDIS_SERVER_URL});
+        client = redis.createClient({url: process.env.REDIS_SERVER_URL});
 
         await client.connect()
         .then(() => {
