@@ -15,7 +15,10 @@ export const ShopContextProvider = (props) => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BE_URL}/allproducts`)
     .then(response => response.json())
-    .then(data => setAllProduct(data))
+    .then(data => {
+      if(data.success == true)    setAllProduct(data.allProducts);
+      else    toast.error(data.error)
+    })
     .catch((err)=> {toast.error(`Failed to fetch products data. \nPlease Reload the page.`)})
   }, [])
 

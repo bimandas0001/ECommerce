@@ -2,8 +2,9 @@ import multer from 'multer';
 import path from 'path';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-
+import {getRedisClient} from './config/redisClient.js';
 import {Session, User} from './model/schema.js';
+import { error, log } from 'console';
 
 dotenv.config();
 const jwtKey = process.env.JWT_KEY;
@@ -75,5 +76,35 @@ export const emailVeryfication = async function (req, res, next) {
     }
     catch(err) {
         res.json({success: false, error: 'Error in server. Please try again.'});
+    }
+}
+
+// Fetch all products data from memory.
+export const fetchFromMemory = () => {
+    return async (req, res, next) => {
+        try {
+            const client = getRedisClient();
+            if(!client || !client.isOpen) {
+                throw error('Redis client is null');
+            }
+
+            const allProducts = await client.get('allProducts');
+            if(allProducts) {
+                console.log('Cache hit');
+                
+                res.json({
+                    success: true,
+                    allProducts: JSON.parse(allProducts)
+                })
+            }
+            else {
+                console.log('Cache miss');
+                next();
+            }
+        }
+        catch(err) {
+            console.log('Error from redis client : ', err);
+            next();
+        }
     }
 }

@@ -4,12 +4,13 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Import modules
+// Import custom modules
 import {connectToDatabase, disconnectFromDatabase} from './model/database.js';
 import {Product, Session, User} from './model/schema.js';
-import { upload, fetchUser, isAdmin, emailVeryfication } from './middleware.js';
+import { upload, fetchUser, isAdmin, emailVeryfication, fetchFromMemory } from './middleware.js';
 import { sendMail, randomGenerator } from './helper/helper.js';
 import { uploadPhoto, deletePhoto } from './helper/firebase/firebaseOperations.js';
+import {getRedisClient} from './config/redisClient.js';
 
 dotenv.config();
 
@@ -94,15 +95,37 @@ app.post('/removeproduct', fetchUser, isAdmin, async (req, res) => {
     }
 })
 
-app.get('/allproducts', async(req, res) => {
-    let allProducts = await Product.find({}).sort({id: 1});
-    res.send(allProducts)
+app.get('/allproducts', fetchFromMemory(), async(req, res) => {
+    try {
+        let allProducts = await Product.find({}).sort({id: 1});
+        // Cache the data in redis.  
+        const client = getRedisClient();      
+        if(client && client.isOpen) {
+            try {
+                await client.set('allProducts', JSON.stringify(allProducts), {EX: 3600});
+            }
+            catch(err) {
+                console.error('Failed to cache in Redis:');
+            }
+        }
+        // Send the data.
+        res.json({
+            success: true,
+            allProducts
+        })
+    }
+    catch(err) {
+        res.json({
+            success: false,
+            error: "Something is wrong! Try again."
+        })
+    }
 })
 
 
 app.post('/getcartitems', fetchUser,  async (req, res) => {
-    let userId = req.body.userId;
     try {
+        let userId = req.body.userId;
         let userData = await User.findOne({_id: userId}, {cart: 1})
         res.json({
             success: true,
