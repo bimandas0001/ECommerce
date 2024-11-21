@@ -1,0 +1,44 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - n1
+
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - redis
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - n1
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - n1
+
+networks:
+  n1:
+    driver: bridge
+
+volumes:
+  redis_data:
